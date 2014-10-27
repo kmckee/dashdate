@@ -11,7 +11,7 @@ describe UpdatePublisher do
       UpdatePublisher.update(:karma, {:current => 100})
       expect(HTTParty).to have_received(:post).with(/^http:\/\/localhost:3030\//, anything)
     end
-    it "posts to specified widget" do
+    it "posts to the specified widget" do
       UpdatePublisher.update(:valuation, {:current => 100})
       expect(HTTParty).to have_received(:post).with(/\/widgets\/valuation$/, anything)
     end
