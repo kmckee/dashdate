@@ -15,5 +15,10 @@ describe UpdatePublisher do
       UpdatePublisher.update(:valuation, {:current => 100})
       expect(HTTParty).to have_received(:post).with(/\/widgets\/valuation$/, anything)
     end
+    it "posts the values as json" do
+      values = {:some_key => "some value"}
+      UpdatePublisher.update(:any, values)
+      expect(HTTParty).to have_received(:post).with(anything, values.to_json)
+    end
   end
 end
