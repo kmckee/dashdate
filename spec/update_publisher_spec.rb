@@ -9,7 +9,11 @@ describe UpdatePublisher do
     end
     it "posts to localhost:3030 by default" do
       UpdatePublisher.update(:karma, {:current => 100})
-      expect(HTTParty).to have_received(:post).with(/http:\/\/localhost:3030\//, anything)
+      expect(HTTParty).to have_received(:post).with(/^http:\/\/localhost:3030\//, anything)
+    end
+    it "posts to specified widget" do
+      UpdatePublisher.update(:valuation, {:current => 100})
+      expect(HTTParty).to have_received(:post).with(/\/widgets\/valuation$/, anything)
     end
   end
 end
