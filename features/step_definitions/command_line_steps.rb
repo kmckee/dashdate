@@ -1,7 +1,7 @@
 When(/^I enter the following in a terminal: "(.*?)"$/) do |user_input|
   words = user_input.split
-  words.shift.should == 'dashdate'
-  @publisher = double("publisher"
+  expect(words.shift). to eq 'dashdate'
+  @publisher = double("publisher")
   Dashdate::App.handle_command(words, publisher)
 end
 
