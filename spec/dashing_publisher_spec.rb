@@ -1,24 +1,25 @@
 require 'spec_helper'
 require 'httparty'
 
-describe DashingPublisher do
+describe Dashdate::Publisher do
   before(:each) { allow(HTTParty).to receive(:post) }
   describe "#update" do
+    subject { Dashdate::Publisher.new }
     it "sends a http post to a url" do
-      DashingPublisher.update(:karma, {:current => 100})
+      subject.update(:karma, {:current => 100})
       expect(HTTParty).to have_received(:post).with(any_args)
     end
     it "posts to localhost:3030 by default" do
-      DashingPublisher.update(:karma, {:current => 100})
+      subject.update(:karma, {:current => 100})
       expect(HTTParty).to have_received(:post).with(/^http:\/\/localhost:3030\//, anything)
     end
     it "posts to the specified widget" do
-      DashingPublisher.update(:valuation, {:current => 100})
+      subject.update(:valuation, {:current => 100})
       expect(HTTParty).to have_received(:post).with(/\/widgets\/valuation$/, anything)
     end
     it "posts the values as json" do
       values = {:some_key => "some value"}
-      DashingPublisher.update(:any, values)
+      subject.update(:any, values)
       expect(HTTParty).to have_received(:post).with(anything, values.to_json)
     end
   end
