@@ -7,5 +7,8 @@ module Dashdate
     def initialize publisher
       @publisher = publisher
     end
+    def handle_args args
+      @publisher.update(:karma, nil)
+    end
   end
 end
