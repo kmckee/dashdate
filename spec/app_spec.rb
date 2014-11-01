@@ -6,7 +6,10 @@ describe Dashdate::App do
       app = Dashdate::App.build()
       app.publisher.should_not be_nil
     end
-    it 'creates an instance of an arg_parser' 
+    it 'creates an instance of an arg_parser' do
+      app = Dashdate::App.build()
+      app.arg_parser.should_not be_nil
+    end
   end
   describe '#initialize' do
     it 'assigns the publisher' do
