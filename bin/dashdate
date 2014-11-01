@@ -1,10 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'trollop'
+require 'app'
 
-opts = Trollop::options do
-  opt :widget, "The name of the widget to update", :short => 'w', :type => String
-  opt :values, "Values to update in the format: value=100,message=Hello There", :type => String
-end
-
-#Todo: Pass options to app
+Dashdate::App.build.handle_args(ARGV)

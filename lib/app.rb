@@ -1,3 +1,6 @@
+require 'publisher'
+require 'arg_parser'
+
 module Dashdate
   class App
     attr_accessor :publisher, :arg_parser

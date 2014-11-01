@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Kyle McKee"]
   spec.email         = ["mckee.kyle@gmail.com"]
   spec.summary       = %q{Update your Dashing dashboards from the command line.}
-  spec.description   = %q{Update your Dashing dashboards from the command line.}
+  spec.description   = %q{This gem allows you to update Dashing dashboards from a command line.}
   spec.homepage      = "http://aptobits.com"
   spec.license       = "MIT"
 
