@@ -22,4 +22,10 @@ describe Dashdate::ArgParser do
     values = subject.parse('dashdate -w karma --values foo=1')[:values]
     values[:foo].should == '1'
   end
+  it 'parses the short form of an auth token' do
+    subject.parse('dashdate -w karma --values foo=1 -a mytoken')[:auth].should == 'mytoken'
+  end
+  it 'parses the long form of an auth token' do
+    subject.parse('dashdate -w karma --values foo=1 --auth mytoken')[:auth].should == 'mytoken'
+  end
 end

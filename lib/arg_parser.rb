@@ -7,13 +7,15 @@ module Dashdate
       opts = parse_arg_array args 
       {
         :widget => opts[:widget].to_sym,
-        :values => parse_value_string(opts[:values])
+        :values => parse_value_string(opts[:values]),
+        :auth => opts[:auth]
       }
     end
     def parse_arg_array args
       Trollop::options(args) do 
         opt :widget, "The name of the widget to publish to", :required => true, :short => :w, :type => String
         opt :values, "The values to push to the widget.  Format is: key1=value1,key2=value2", :required => true, :type => String
+        opt :auth, "Your auth token.  Should match whats in config.ru.", :type => String
       end
     end
     def parse_value_string string

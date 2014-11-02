@@ -20,7 +20,8 @@ describe Dashdate::Publisher do
     it "posts the values as json" do
       values = {:some_key => "some value"}
       subject.update(:any, values)
-      expect(HTTParty).to have_received(:post).with(anything, values.to_json)
+      expect(HTTParty).to have_received(:post).with(anything, { body: values.to_json })
     end
+    it "posts the auth_token"
   end
 end
