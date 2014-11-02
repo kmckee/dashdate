@@ -19,12 +19,10 @@ module Dashdate
       end
     end
     def parse_value_string string
-      values = {}
-      string.split(',').each do |key_equals_value|
+      string.split(',').each_with_object({}) do |key_equals_value, hash|
         key_value_pair = key_equals_value.split('=')
-        values[key_value_pair.first.to_sym] = key_value_pair.last
+        hash[key_value_pair.first.to_sym] = key_value_pair.last
       end
-      values
     end
 
   end
