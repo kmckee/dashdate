@@ -13,7 +13,7 @@ module Dashdate
     end
     def handle_args args
       parsed = @arg_parser.parse(args)
-      @publisher.update(parsed[:widget], parsed[:values], parsed[:auth_token])
+      @publisher.update(parsed[:widget], parsed[:values], parsed[:auth])
     end
   end
 end

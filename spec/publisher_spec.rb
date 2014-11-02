@@ -27,5 +27,8 @@ describe Dashdate::Publisher do
       subject.update(:any, {}, expected_auth_token)
       expect(HTTParty).to have_received(:post).with(anything, { body: {auth_token: expected_auth_token }.to_json })
     end
+    it "puts details when a request fails" do
+
+    end
   end
 end

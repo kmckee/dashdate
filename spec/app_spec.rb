@@ -45,8 +45,8 @@ describe Dashdate::App do
       expect(publisher).to have_received(:update).with(anything, expected_values, anything)
     end
     it 'passes the auth_token to the publisher' do
-      expected_auth = { :auth_token => 'foo' }
-      allow(arg_parser).to receive(:parse).and_return({ :auth_token => expected_auth })
+      expected_auth = { :auth => 'foo' }
+      allow(arg_parser).to receive(:parse).and_return({ :auth => expected_auth })
       subject.handle_args('')
       expect(publisher).to have_received(:update).with(anything, anything, expected_auth)
     end
