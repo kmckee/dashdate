@@ -9,7 +9,12 @@ module Dashdate
       new(Dashdate::Writer.new)
     end
     def received_http_response_code code
-      @writer.write('Successfully updated dashboard!')  
+      case code
+        when 204
+          @writer.write('Successfully updated dashboard!') 
+        when 401 
+          @writer.write('Error: Invalid Authentication Token.  Check your config.ru file.')
+      end
     end
   end
 end
