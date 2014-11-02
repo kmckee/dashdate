@@ -2,9 +2,10 @@ require 'spec_helper'
 require 'httparty'
 
 describe Dashdate::Publisher do
-  before(:each) { allow(HTTParty).to receive(:post) }
+  before(:each) { allow(HTTParty).to receive(:post).and_return({code: 200 }) }
   describe "#update" do
-    subject { Dashdate::Publisher.new }
+    let(:notifier) { double('notifier', :received_http_response_code => nil) }
+    subject { Dashdate::Publisher.new(notifier) }
     it "sends a http post to a url" do
       subject.update(:karma, {:current => 100}, 'auth')
       expect(HTTParty).to have_received(:post).with(any_args)
@@ -27,8 +28,10 @@ describe Dashdate::Publisher do
       subject.update(:any, {}, expected_auth_token)
       expect(HTTParty).to have_received(:post).with(anything, { body: {auth_token: expected_auth_token }.to_json })
     end
-    it "puts details when a request fails" do
-
+    it "passes the response code to the notifier" do
+      allow(HTTParty).to receive(:post).and_return({ code: 200 })
+      subject.update(:any, {}, 'auth')
+      expect(notifier).to have_received(:received_http_response_code).with(200)
     end
   end
 end

@@ -5,7 +5,7 @@ module Dashdate
   class App
     attr_accessor :publisher, :arg_parser
     def self.build
-      new(Dashdate::Publisher.new, Dashdate::ArgParser.new)
+      new(Dashdate::Publisher.build, Dashdate::ArgParser.new)
     end
     def initialize publisher, arg_parser
       @publisher = publisher
