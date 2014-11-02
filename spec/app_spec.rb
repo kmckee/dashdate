@@ -31,18 +31,24 @@ describe Dashdate::App do
     it 'publishes to the correct widget' do
       allow(arg_parser).to receive(:parse).and_return({ :widget => :karma })
       subject.handle_args('')
-      expect(publisher).to have_received(:update).with(:karma, anything)
+      expect(publisher).to have_received(:update).with(:karma, anything, anything)
     end
     it 'publishes to other widgets' do
       allow(arg_parser).to receive(:parse).and_return({ :widget => :valuation })
       subject.handle_args('')
-      expect(publisher).to have_received(:update).with(:valuation, anything)
+      expect(publisher).to have_received(:update).with(:valuation, anything, anything)
     end
     it 'passes the values to the publisher' do
       expected_values = { :value => 100 }
       allow(arg_parser).to receive(:parse).and_return({ :values => expected_values })
       subject.handle_args('')
-      expect(publisher).to have_received(:update).with(anything, expected_values)
+      expect(publisher).to have_received(:update).with(anything, expected_values, anything)
+    end
+    it 'passes the auth_token to the publisher' do
+      expected_auth = { :auth_token => 'foo' }
+      allow(arg_parser).to receive(:parse).and_return({ :auth_token => expected_auth })
+      subject.handle_args('')
+      expect(publisher).to have_received(:update).with(anything, anything, expected_auth)
     end
   end
 end

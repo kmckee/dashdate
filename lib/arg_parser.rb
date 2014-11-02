@@ -4,8 +4,8 @@ module Dashdate
   class ArgParser
     def parse args
       args = args.split.drop(1) unless args.class == Array 
-      opts = parse_arg_array args 
-      {
+      opts = parse_arg_array(args)
+      return {
         :widget => opts[:widget].to_sym,
         :values => parse_value_string(opts[:values]),
         :auth => opts[:auth]
