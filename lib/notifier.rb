@@ -14,6 +14,8 @@ module Dashdate
           @writer.write('Successfully updated dashboard!') 
         when 401 
           @writer.write('Error: Invalid Authentication Token.  Check your config.ru file.')
+        else
+          @writer.write("Unknown error. Received HTTP Response code: #{code}")
       end
     end
   end
