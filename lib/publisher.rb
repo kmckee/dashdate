@@ -7,7 +7,7 @@ module Dashdate
       @notifier = notifier
     end
     def self.build
-      new(Dashdate::Notifier.new)
+      new(Dashdate::Notifier.build)
     end
     def update(widget, values, auth)
       url = "http://localhost:3030/widgets/#{widget.to_s}"
