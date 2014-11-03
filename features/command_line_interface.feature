@@ -3,7 +3,7 @@ Feature:  Command Line Interface
   I want a command line interface for the dashdate gem
 
   Scenario: Updating the Karma sample widget with a new value
-    When I enter the following in a terminal: "dashdate -widget Karma -value 100"
+    When I enter the following in a terminal: "dashdate --widget Karma --values value=100"
     Then the Karma widget should be updated with the following values:
-      | Value |
+      | value |
       | 100   |

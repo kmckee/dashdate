@@ -2,7 +2,8 @@ require 'spec_helper'
 require 'httparty'
 
 describe Dashdate::Publisher do
-  before(:each) { allow(HTTParty).to receive(:post).and_return({code: 200 }) }
+  let(:response) { double('response', :code => 200) }
+  before(:each) { allow(HTTParty).to receive(:post).and_return(response) }
   describe "#update" do
     let(:notifier) { double('notifier', :received_http_response_code => nil) }
     subject { Dashdate::Publisher.new(notifier) }
@@ -29,7 +30,6 @@ describe Dashdate::Publisher do
       expect(HTTParty).to have_received(:post).with(anything, { body: {auth_token: expected_auth_token }.to_json })
     end
     it "passes the response code to the notifier" do
-      allow(HTTParty).to receive(:post).and_return({ code: 200 })
       subject.update(:any, {}, 'auth')
       expect(notifier).to have_received(:received_http_response_code).with(200)
     end

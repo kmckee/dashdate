@@ -1,11 +1,17 @@
+
 When(/^I enter the following in a terminal: "(.*?)"$/) do |user_input|
-  words = user_input.split
-  expect(words.shift). to eq 'dashdate'
-  @publisher = double("publisher")
-  Dashdate::App.handle_command(words, publisher)
+  Dashdate::App.build.handle_args(user_input)
 end
 
 Then(/^the (.*) widget should be updated with the following values:$/) do |widget_name, expected_values_table|
-  expected_values = expected_values_table.hashes.first
-  expect(@publisher).to have_received(:post).with(widget_name.to_sym, expected_values)
+  request = FakeWeb.last_request
+  expect(request.method).to eq 'POST'
+  expect(request.path).to eq "/widgets/#{widget_name}"
+  
+  sent_values = JSON.parse(request.body)
+  expected = expected_values_table.hashes.first
+  expected.keys.each do |key|
+    value = expected[key]
+    expect(sent_values[key]).to eq value
+  end
 end

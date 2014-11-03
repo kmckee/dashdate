@@ -1,1 +1,5 @@
 require 'cucumber/rspec/doubles'
+require 'fakeweb'
+require 'app'
+require 'json'
+require 'net/http'

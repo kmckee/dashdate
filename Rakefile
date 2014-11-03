@@ -1,19 +1,16 @@
 require "bundler/gem_tasks"
 
+require 'rspec/core/rake_task'
+require 'cucumber'
+require 'cucumber/rake/task'
 
+RSpec::Core::RakeTask.new(:spec)
 
-begin
-  require 'rspec/core/rake_task'
-  require 'cucumber'
-  require 'cucumber/rake/task'
+Cucumber::Rake::Task.new(:cucumber) do |t|
+  t.cucumber_opts = "features --format pretty"
+end 
 
-  RSpec::Core::RakeTask.new(:spec)
+desc 'Run all specs and cukes'
+task :test => ['spec', 'cucumber']
 
-  Cucumber::Rake::Task.new(:cucumber) do |t|
-    t.cucumber_opts = "features --format pretty"
-  end 
-
-  task :default => :spec
-rescue LoadError
-  # no rspec available
-end
+task :default => :test
