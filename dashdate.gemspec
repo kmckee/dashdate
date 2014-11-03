@@ -2,7 +2,6 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'dashdate/version'
-require 'require_all'
 
 Gem::Specification.new do |spec|
   spec.name          = "dashdate"
@@ -24,6 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "cucumber", "~> 1.3"
   spec.add_development_dependency "rspec", "~> 2.0"
   spec.add_development_dependency "rspec-mocks", "~>2.0"
+  spec.add_development_dependency "dashing", "~> 1.3"
   spec.add_dependency "require_all", "~> 1.3"
   spec.add_dependency "httparty", "~> 0.13"
   spec.add_dependency "trollop", "~> 2.0"
