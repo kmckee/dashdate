@@ -1,6 +1,7 @@
 # Dashdate
+[![Build Status](https://travis-ci.org/kmckee/dashdate.png)](https://travis-ci.org/kmckee/dashdate)
 
-TODO: Write a gem description
+Update your dashing dashboards from a command line.
 
 ## Installation
 
