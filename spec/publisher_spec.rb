@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'httparty'
 
 describe Dashdate::Publisher do
   let(:response) { double('response', :code => 200) }
