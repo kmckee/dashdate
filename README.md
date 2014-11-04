@@ -1,5 +1,6 @@
 # Dashdate
 [![Build Status](https://travis-ci.org/kmckee/dashdate.png)](https://travis-ci.org/kmckee/dashdate)
+[![Gem Version](https://badge.fury.io/rb/dashdate.svg)](http://badge.fury.io/rb/dashdate)
 
 Update your dashing dashboards from a command line.
 
